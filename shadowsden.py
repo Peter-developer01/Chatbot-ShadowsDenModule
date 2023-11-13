@@ -68,9 +68,15 @@ def find_associated_word(word):
         # Create a temp list. Adding the word to the list of the class
         # should only happen if an associated word is found.
         if word_to_reply is None:
-            get_word = get_associated_word(word, latest_words_no_save)
-            word_to_reply = get_word[0]
-            word_found = get_word[1]
+            try:
+                get_word = get_associated_word(word, latest_words_no_save)
+                word_to_reply = get_word[0]
+                word_found = get_word[1]
+            except:
+                # If an website is down or any error occurs,
+                # the bot will not fail and will use either links or
+                # post a message that the associated word is not found.
+                pass
         if word_to_reply is None:
             if len(found_links) > 0:
                 word_found = True
